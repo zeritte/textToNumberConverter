@@ -1,13 +1,9 @@
 package converter;
-import javax.swing.*;
 
 public class Main {	
 	public static void main(String[] args) {
-		// String num = JOptionPane.showInputDialog("Number?");
-		String num = "1038.15";
-		DoubleConverter a = new DoubleConverter(num);
-		String b = a.conversionToText();
-		System.out.println();
-		a.conversionBack(b);
-	}	
+		String num = "1.00"; // it has to have exactly 2 decimal points and should be larger than 1
+		DoubleConverter TOBERUN = new DoubleConverter(num);
+		TOBERUN.run();
+	}
 }

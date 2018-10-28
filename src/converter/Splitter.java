@@ -2,7 +2,7 @@ package converter;
 
 public class Splitter {
 	private String input, decimal;
-	private  String[] splitted;
+	private String[] splitted;
 	private int mod, quotient, nullElement;
 	private boolean isNum=true;	
 	
@@ -20,12 +20,12 @@ public class Splitter {
 			this.input=input_.substring(0,q);
 			this.decimal = input_.substring(q+1);
 		} else { // if it is a text to be converted to number
-			// decimal part is seperated and held in another string
+			// decimal part is separated and held in another string
 			int lengthOfDollar=" dollar(s)".length();
 			int dollarIndex= input_.indexOf("dollar");
-			int centIndex=input_.indexOf(" cent");
+			int centIndex=input_.indexOf("cent");
 			this.input=input_.substring(0, dollarIndex-1);
-			this.decimal=input_.substring(dollarIndex+lengthOfDollar, centIndex);
+			if (centIndex!=-1) this.decimal=input_.substring(dollarIndex+lengthOfDollar, centIndex-1);
 			isNum=false;
 		}
 		Split();
@@ -86,28 +86,28 @@ public class Splitter {
 	
 	public void splitNum() {
 		switch(quotient) { // splitting to 3-num digits
-		case 0:
+		case 0: // if less than 3 digits
 			splitted[0]=input;
 			break;
-		case 1:
-			if(mod==0) {
+		case 1: // if 3-5 digits
+			if(mod==0) { // if exactly 3 digits
 				splitted[0]=input.substring(0, 3);
-			} else {
+			} else { // if 4 or 5 digits
 				splitted[0]=input.substring(0, mod);
 				splitted[1]=input.substring(mod, mod+3);
 			}			
 			break;
-		case 2:
-			if(mod==0) {
+		case 2: // if 6-8 digits
+			if(mod==0) { // if exactly 6 digits
 				splitted[0]=input.substring(0, 3);
 				splitted[1]=input.substring(3, 6);
-			}else {
+			}else { // if 7 or 8 digits
 				splitted[0]=input.substring(0, mod);
 				splitted[1]=input.substring(mod, mod+3);
 				splitted[2]=input.substring(mod+3, mod+6);
 			}			
 			break;
-		case 3:
+		case 3: // if 9 digits
 			splitted[0]=input.substring(0, 3);
 			splitted[1]=input.substring(3, 6);
 			splitted[2]=input.substring(6);
@@ -117,10 +117,10 @@ public class Splitter {
 	
 	public void numChecker(){ // searches for number of digits so that we will know where to work
 		nullElement=2;
-		if(splitted[nullElement]!=null) { // it is a number with more than 6 digits
+		if(splitted[nullElement]!=null) { // if it is a number with more than 6 digits
 			nullElement=2;
 		}
-		while(splitted[nullElement]==null) { // it has maximum 6 digits
+		while(splitted[nullElement]==null) { // if it has maximum 6 digits
 			nullElement--;
 		}
 	}
