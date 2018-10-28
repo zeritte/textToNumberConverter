@@ -1,12 +1,12 @@
 package converter;
 
 public class Splitter {
-	String input, decimal;
-	String[] splitted;
-	int mod, quotient, nullElement;
-	boolean isNum=true;	
+	private String input, decimal;
+	private  String[] splitted;
+	private int mod, quotient, nullElement;
+	private boolean isNum=true;	
 	
-	Splitter(String input_){ // constructor
+	public Splitter(String input_){ // constructor
 		this.splitted = new String[3]; // cleaning this up!
 		if(Character.isDigit(input_.charAt(0))) { // if it is a number
 			int q=0;
@@ -29,6 +29,18 @@ public class Splitter {
 			isNum=false;
 		}
 		Split();
+	}
+	
+	public String[] getSplitted() {
+		return splitted;
+	}
+	
+	public String getDecimal() {
+		return decimal;
+	}
+	
+	public int getNullElement() {
+		return nullElement;
 	}
 	
 	
