@@ -6,7 +6,7 @@
 
 # How to run?
 
-1. Open your favorite Java IDE and import project.
+1. Open your favorite Java IDE (Eclipse is strongly recommended in order to be able to run the unit tests) and import the project.
 2. Edit the string in the main class.
 3. Run it.
 
